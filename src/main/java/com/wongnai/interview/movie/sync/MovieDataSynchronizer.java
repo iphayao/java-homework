@@ -29,6 +29,7 @@ public class MovieDataSynchronizer {
 				.map(MovieMapper.INSTANCE::movieDataToMovie)
 				.collect(Collectors.toList());
 
+		movieRepository.deleteAll();
 		movieRepository.saveAll(movies);
 	}
 }
