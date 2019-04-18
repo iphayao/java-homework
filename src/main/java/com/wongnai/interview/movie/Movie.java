@@ -1,5 +1,8 @@
 package com.wongnai.interview.movie;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Movie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,30 +25,4 @@ public class Movie {
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> actors = new ArrayList<>();
-
-	/**
-	 * Required by JPA.
-	 */
-	public Movie() {
-	}
-
-	public Movie(String name) {
-		this.name = name;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<String> getActors() {
-		return actors;
-	}
 }
