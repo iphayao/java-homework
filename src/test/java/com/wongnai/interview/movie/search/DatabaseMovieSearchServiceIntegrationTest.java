@@ -61,6 +61,13 @@ public class DatabaseMovieSearchServiceIntegrationTest {
 	}
 
 	@Test
+	public void testEmptyStringQueryText() {
+		List<Movie> result = searchService.search("");
+
+		Assert.assertThat(result.size(), Matchers.equalTo(0));
+	}
+
+	@Test
 	public void testFindSingleKeywordContainInTitleWithCaseInsensitive() {
 		List<Movie> result = searchService.search("glorious");
 

@@ -2,6 +2,7 @@ package com.wongnai.interview.movie.external;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestOperations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,6 +25,14 @@ public class MovieDataServiceImpl implements MovieDataService {
 		// Please noted that you must only read data remotely and only from given source,
 		// do not download and use local file or put the file anywhere else.
 
-		return restTemplate.getForObject(MOVIE_DATA_URL, MoviesResponse.class);
+		MoviesResponse moviesResponse = new MoviesResponse();
+
+		try {
+			moviesResponse = restTemplate.getForObject(MOVIE_DATA_URL, MoviesResponse.class);
+		} catch (RestClientException e) {
+			e.printStackTrace();
+		}
+
+		return moviesResponse;
 	}
 }
