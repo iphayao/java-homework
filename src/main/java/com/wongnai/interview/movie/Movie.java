@@ -24,7 +24,7 @@ public class Movie {
 	/**
 	 * Required by JPA.
 	 */
-	protected Movie() {
+	public Movie() {
 	}
 
 	public Movie(String name) {
